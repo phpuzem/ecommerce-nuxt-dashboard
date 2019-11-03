@@ -36,9 +36,7 @@
 
 <script>
 export default {
-  layout: "auth",
-  props: {
-    source: String
-  }
+  auth: "guest",
+  layout: "auth"
 };
 </script>

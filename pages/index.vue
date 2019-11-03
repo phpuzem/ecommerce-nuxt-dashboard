@@ -6,7 +6,7 @@
         dashboard
       </h1>
       <h2 class="subtitle">
-        My super Nuxt.js project
+        {{$auth.user.name}} Nuxt.js project
       </h2>
       <div class="links">
         <a
