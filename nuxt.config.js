@@ -29,6 +29,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    //
   ],
   /*
   ** Nuxt.js modules
@@ -37,8 +38,18 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/vuetify',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/proxy',
   ],
+
+  proxy: {
+    '/api': {
+      target: "http://www.boilerplate.test",
+      pathRewrite: {
+        '^/api': '/api'
+      }
+    }
+  },
 
   router: {
     middleware: ['auth']
@@ -55,13 +66,13 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: 'http://www.boilerplate.test/api/auth/login', method: 'post', propertyName: 'meta.accessToken' },
-          logout: { url: 'http://www.boilerplate.test/api/auth/logout', method: 'post' },
-          user: { url: 'http://www.boilerplate.test/api/auth/me', method: 'get', propertyName: 'data' }
+          login: { url: 'api/auth/login', method: 'post', propertyName: 'meta.accessToken' },
+          logout: { url: 'api/auth/logout', method: 'post' },
+          user: { url: 'api/auth/me', method: 'get', propertyName: 'data' }
         }
       }
     },
-    resetOnError : true // If enabled, user will be automatically logged out if an error happens. (For example when token expired)
+    resetOnError: true // If enabled, user will be automatically logged out if an error happens. (For example when token expired)
   },
 
   /*
