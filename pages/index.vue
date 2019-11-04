@@ -6,7 +6,7 @@
         dashboard
       </h1>
       <h2 class="subtitle">
-        {{$auth.user.name}} Nuxt.js project
+      {{ $formatDate($auth.user.created_at) }} Nuxt.js project
       </h2>
       <div class="links">
         <a

@@ -1,3 +1,4 @@
+require('dotenv').config()
 
 export default {
   mode: 'universal',
@@ -5,11 +6,11 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.title || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.description || '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -29,7 +30,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    //
+    '@/plugins/moment'
   ],
   /*
   ** Nuxt.js modules
@@ -40,11 +41,13 @@ export default {
     '@nuxtjs/vuetify',
     '@nuxtjs/auth',
     '@nuxtjs/proxy',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/moment',
   ],
 
   proxy: {
     '/api': {
-      target: "http://www.boilerplate.test",
+      target: process.env.api_full_url || "http://www.boilerplate.test",
       pathRewrite: {
         '^/api': '/api'
       }
@@ -80,6 +83,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    browserBaseURL: process.env.app_full_url || "http://localhost:3000"
   },
 
 
