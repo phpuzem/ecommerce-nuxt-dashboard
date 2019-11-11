@@ -15,6 +15,7 @@
                 v-model="email"
                 prepend-icon="person"
                 type="text"
+                :error-messages="$store.getters['validation/errors'].email"
               />
               <v-text-field
                 id="password"
@@ -23,6 +24,7 @@
                 name="password"
                 prepend-icon="lock"
                 type="password"
+                :error-messages="$store.getters['validation/errors'].password"
               />
             </v-form>
           </v-card-text>
